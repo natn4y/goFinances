@@ -1,6 +1,5 @@
 import React from "react";
 import { StatusBar } from "react-native";
-
 import { ThemeProvider } from "styled-components";
 import AppLoading from "expo-app-loading";
 
@@ -11,6 +10,7 @@ import {
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
 
+import { Dashboard } from "./src/screens/Dashboard/index.native";
 import theme from "./src/global/styles/theme";
 
 export default function App() {
@@ -27,6 +27,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <StatusBar backgroundColor="black" />
+      <Dashboard />
     </ThemeProvider>
   );
 }
