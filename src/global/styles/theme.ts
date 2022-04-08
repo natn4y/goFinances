@@ -20,6 +20,7 @@ export default {
     title: "#363f5f",
     text: "#962cb2",
     text_dark: "#000000",
+    text_gray: "rgb(168, 177, 191)",
     background: "#f0f2f5",
   },
   fonts: {
