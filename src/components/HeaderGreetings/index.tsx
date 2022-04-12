@@ -1,7 +1,6 @@
 import React from "react";
-// prettier-ignore
 import { Text } from "react-native";
-// prettier-ignore
+
 import {
   Container,
   UserInfo,
@@ -11,9 +10,10 @@ import {
   UserName,
   UserWrapper,
   Icon,
+  LogoutButton,
 } from "./styles";
 
-export function Header() {
+export function HeaderGreetings() {
   return (
     <Container>
       <UserWrapper>
@@ -29,7 +29,9 @@ export function Header() {
             </UserName>
           </User>
         </UserInfo>
-        <Icon name="power" />
+        <LogoutButton>
+          <Icon name="power" />
+        </LogoutButton>
       </UserWrapper>
     </Container>
   );

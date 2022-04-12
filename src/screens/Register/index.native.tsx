@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Modal, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
-import { Button } from "../../components/Form/Button/Index";
+import { Modal, Keyboard, Alert } from "react-native";
 import { InputForm } from "../../components/Form/InputForm";
 import { TransactionsTypes } from "../../components/Form/TransactionTypes/TransactionTypes";
 import { TransactionTypeButton } from "../../components/Form/TransactionTypes/TransactionTypeButton";
-// prettier-ignore
 
 import {
   Container,
-  Header,
-  Title,
   Form,
   Fields,
 } from './style';
+
 import { CategorySelectButton } from "../../components/Form/CategorySelectButton";
 import { CategorySelect } from "../CategorySelect";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { Button } from "../../components/Form/Button";
+import { HeaderSection } from "../../components/HeaderSection/index";
 
 interface FormData {
   name: string;
@@ -25,11 +25,11 @@ interface FormData {
 }
 
 const schema = Yup.object().shape({
-  name: Yup.string().required("Nome obrigatório"),
+  name: Yup.string().required("Digite seu nome"),
   amount: Yup.number()
     .typeError("Informe um valor numérico")
     .positive("O valor não pode ser negativo")
-    .required("Valor é obrigatório"),
+    .required("Informe um valor"),
 });
 
 export function Register() {
@@ -76,11 +76,13 @@ export function Register() {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback
+      onPress={Keyboard.dismiss}
+      containerStyle={{ flex: 1 }}
+      style={{ flex: 1 }}
+    >
       <Container>
-        <Header>
-          <Title>Cadastro</Title>
-        </Header>
+        <HeaderSection title="Cadastro" />
         <Form>
           <Fields>
             <InputForm

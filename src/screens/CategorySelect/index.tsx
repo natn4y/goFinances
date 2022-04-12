@@ -1,9 +1,10 @@
 import React from "react";
 import { FlatList } from "react-native";
-import { Button } from "../../components/Form/Button/Index";
+
+import { Button } from "../../components/Form/Button";
 
 import { categories } from "../../utils/categories";
-// prettier-ignore
+
 import {
   Container,
   Header,
@@ -26,7 +27,11 @@ interface Props {
   closeSelectCategory: () => void;
 }
 
-export function CategorySelect({ category, setCategory, closeSelectCategory }: Props) {
+export function CategorySelect({
+  category,
+  setCategory,
+  closeSelectCategory
+}: Props) {
   function handleCategorySelect(category: Category) {
     setCategory(category);
   }
@@ -44,7 +49,7 @@ export function CategorySelect({ category, setCategory, closeSelectCategory }: P
           <Category
             onPress={() => handleCategorySelect(item)}
             isActive={category === item.name}
-          >
+            >
             <Icon name={item.icon} />
             <Name>{item.name}</Name>
           </Category>
@@ -52,7 +57,10 @@ export function CategorySelect({ category, setCategory, closeSelectCategory }: P
         ItemSeparatorComponent={() => <Separator />}
       />
       <Footer>
-        <Button onPress={closeSelectCategory} title="Selecionar" />
+        <Button
+          onPress={closeSelectCategory}
+          title="Selecionar"
+        />
       </Footer>
     </Container>
   );

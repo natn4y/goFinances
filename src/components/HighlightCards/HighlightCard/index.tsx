@@ -1,5 +1,5 @@
 import React from "react";
-// prettier-ignore
+
 import {
   Container,
   Header,
@@ -25,16 +25,33 @@ const icon = {
   total: "dollar-sign",
 };
 
-export function HighlightCard({ type, title, amount, lastTransaction }: Props) {
+export function HighlightCard({
+  type,
+  title,
+  amount,
+  lastTransaction
+}: Props) {
+
   return (
     <Container type={type}>
       <Header>
-        <Title type={type}>{title}</Title>
-        <Icon name={icon[type]} type={type}></Icon>
+        <Title
+          type={type}>{title}</Title>
+        <Icon
+          name={icon[type]}
+          type={type}
+        >
+        </Icon>
       </Header>
 
       <Footer>
-        <TextTicker duration={5000} loop bounce repeatSpacer={50} marqueeDelay={1000}>
+        <TextTicker
+          duration={5000}
+          loop
+          bounce
+          repeatSpacer={50}
+          marqueeDelay={1000}
+        >
           <Amount type={type}>{amount}</Amount>
         </TextTicker>
         <LastTransaction type={type}>{lastTransaction}</LastTransaction>

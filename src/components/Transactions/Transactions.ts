@@ -1,7 +1,8 @@
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 import { getBottomSpace } from "react-native-iphone-x-helper";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { FlatList, FlatListProps } from "react-native";
+
 import { DataListProps } from "../../screens/Dashboard/index.native";
 
 export const Transactions = styled.View`
