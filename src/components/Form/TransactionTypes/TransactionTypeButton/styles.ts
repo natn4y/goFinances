@@ -12,17 +12,21 @@ interface ContainerProps {
   type: "up" | "down";
 }
 
-export const Container = styled(RectButton)<ContainerProps>`
+export const Container = styled.View`
   width: 48%;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  border-width: ${({ isActive, type }) => (isActive ? 0 : 1.5)}px;
+  border-width: 1.5px;
   border-style: solid;
   border-color: ${({ theme }) => theme.colors.text_gray};
   border-radius: 5px;
-  padding: 16px;
   margin: 0 7px;
+`;
+
+export const Button = styled(RectButton)<ContainerProps>`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-radius: 3px;
   ${({ isActive, type }) =>
     isActive &&
     type === "down" &&
