@@ -1,5 +1,4 @@
 import React from "react";
-import { Header } from "../../components/Header";
 
 import { Transactions, TransactionList, Title } from "../../components/Transactions/Transactions";
 import {
@@ -10,6 +9,7 @@ import {
 import { Container } from "./styles.native";
 import { HighlightCard } from "../../components/HighlightCards/HighlightCard";
 import { HighlightCards } from "../../components/HighlightCards/HighlightCards";
+import { HeaderGreetings } from "../../components/HeaderGreetings";
 export interface DataListProps extends TransactionCardProps {
   id: string;
 }
@@ -44,7 +44,7 @@ export function Dashboard() {
 
   return (
     <Container>
-      <Header />
+      <HeaderGreetings />
       <HighlightCards>
         <HighlightCard
           type="up"

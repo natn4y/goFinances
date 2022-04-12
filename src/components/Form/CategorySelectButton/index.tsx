@@ -6,7 +6,10 @@ interface CategorySelectProps {
   onPress: () => void;
 }
 
-export function CategorySelectButton({ title, onPress }: CategorySelectProps) {
+export function CategorySelectButton({
+  title,
+  onPress
+}: CategorySelectProps) {
   return (
     <Container onPress={onPress}>
       <Category>{title}</Category>
