@@ -47,6 +47,7 @@ export function Register() {
   });
 
   const {
+    reset,
     control,
     handleSubmit,
     formState: { errors },
@@ -88,7 +89,15 @@ export function Register() {
         ...currentData,
         newTransaction
       ]
+
       await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted));
+
+      reset();
+      setTransactionType('');
+      setCategory({
+        key: 'category',
+        name: 'Categoria',
+      })
       console.log(dataFormatted);
     } catch (error) {
       console.log(error);
