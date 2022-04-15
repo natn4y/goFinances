@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
+
 import { useForm } from "react-hook-form";
+import { useNavigation } from '@react-navigation/native';
+
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Modal, Keyboard, Alert } from "react-native";
@@ -27,6 +30,10 @@ interface FormData {
   amount: string;
 }
 
+type NavigationProps = {
+  navigate:(screen: string) => void;
+}
+
 const schema = Yup.object().shape({
   name: Yup.string().required("Digite seu nome"),
   amount: Yup.number()
@@ -45,6 +52,8 @@ export function Register() {
     key: "category",
     name: "Categoria",
   });
+
+  const navigation = useNavigation<NavigationProps>();
 
   const {
     reset,
@@ -99,6 +108,7 @@ export function Register() {
         name: 'Categoria',
       })
       console.log(dataFormatted);
+      navigation.navigate('Listagem');
     } catch (error) {
       console.log(error);
       Alert.alert('Não foi possível salvar');
