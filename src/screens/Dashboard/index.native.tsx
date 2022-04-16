@@ -64,7 +64,7 @@ export function Dashboard() {
         day: "2-digit",
         month: "2-digit",
         year: "2-digit",
-      }).format(item.date);
+      }).format(new Date(item.date));
 
       return {
         id: item.id,
