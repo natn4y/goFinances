@@ -45,15 +45,12 @@ export function HighlightCard({
       </Header>
 
       <Footer>
-        <TextTicker
-          duration={5000}
-          loop
-          bounce
-          repeatSpacer={50}
-          marqueeDelay={1000}
-        >
-          <Amount type={type}>{amount}</Amount>
-        </TextTicker>
+        {type !== "total" && <Amount type={type}>{amount}</Amount>}
+        {type === "total" && (
+          <TextTicker duration={5000} loop bounce repeatSpacer={50} marqueeDelay={1000}>
+            <Amount type={type}>{amount}</Amount>
+          </TextTicker>
+        )}
         <LastTransaction type={type}>{lastTransaction}</LastTransaction>
       </Footer>
     </Container>
