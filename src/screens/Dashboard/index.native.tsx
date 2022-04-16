@@ -28,7 +28,7 @@ interface HighlightProps {
 
 interface HighlightData {
   entries: HighlightProps;
-  expensives: HighlightProps;
+  expenses: HighlightProps;
   total: HighlightProps;
 }
 
@@ -89,7 +89,7 @@ export function Dashboard() {
           })
           .replace("R$", `R$ `),
       },
-      expensives: {
+      expenses: {
         amount: expensiveTotal
           .toLocaleString("pt-BR", {
             style: "currency",
@@ -130,19 +130,19 @@ export function Dashboard() {
               type="up"
               title="Entradas"
               amount={HighlightData.entries.amount}
-              lastTransaction="Última entrada dia 13 de abril"
+              lastTransaction={`Última entrada dia `}
             />
             <HighlightCard
               type="down"
               title="Saídas"
-              amount={HighlightData.expensives.amount}
-              lastTransaction="Última saída dia 03 de abril"
+              amount={HighlightData.expenses.amount}
+              lastTransaction={`Última saída dia `}
             />
             <HighlightCard
               type="total"
               title="Total"
               amount={HighlightData?.total?.amount}
-              lastTransaction="01 à 16 de abril"
+              lastTransaction={`01 à 16 de abril`}
             />
           </HighlightCards>
           <Transactions>
