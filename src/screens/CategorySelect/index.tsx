@@ -22,7 +22,7 @@ interface Category {
 }
 
 interface Props {
-  category: string;
+  category: Category;
   setCategory: (category: Category) => void;
   closeSelectCategory: () => void;
 }
@@ -48,7 +48,7 @@ export function CategorySelect({
         renderItem={({ item }) => (
           <Category
             onPress={() => handleCategorySelect(item)}
-            isActive={category === item.name}
+            isActive={category.key === item.key}
             >
             <Icon name={item.icon} />
             <Name>{item.name}</Name>

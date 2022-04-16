@@ -64,7 +64,7 @@ export function Register() {
     resolver: yupResolver(schema),
   });
 
-  function handleTransactionTypeButtonSelect(type: "up" | "down") {
+  function handleTransactionTypeButtonSelect(type: "positive" | "negative") {
     setTransactionType(type);
   }
 
@@ -85,9 +85,9 @@ export function Register() {
       id: String(uuid.v4()),
       name: form.name,
       amount: form.amount,
-      transactionType,
-      category: category.name,
-      data: new Date,
+      type: transactionType,
+      category: category.key,
+      data: new Date(),
     };
 
     try {
@@ -119,7 +119,6 @@ export function Register() {
   //   async function removeAllTransactions() {
   //     await AsyncStorage.removeItem(dataKey);
   //   }
-
   //   removeAllTransactions();
   // }, []);
 
@@ -152,14 +151,14 @@ export function Register() {
               <TransactionTypeButton
                 type="up"
                 title="Income"
-                onPress={() => handleTransactionTypeButtonSelect("up")}
-                isActive={transactionType === "up"}
+                onPress={() => handleTransactionTypeButtonSelect("positive")}
+                isActive={transactionType === "positive"}
               />
               <TransactionTypeButton
                 type="down"
                 title="Outcome"
-                onPress={() => handleTransactionTypeButtonSelect("down")}
-                isActive={transactionType === "down"}
+                onPress={() => handleTransactionTypeButtonSelect("negative")}
+                isActive={transactionType === "negative"}
               />
             </TransactionsTypes>
             <CategorySelectButton title={category.name} onPress={handleOpenSelectCategoryModal} />
@@ -168,7 +167,7 @@ export function Register() {
         </Form>
         <Modal visible={categoryModalOpen}>
           <CategorySelect
-            category={category.name}
+            category={category}
             setCategory={setCategory}
             closeSelectCategory={handleCloseSelectCategoryModal}
           />
