@@ -29,7 +29,7 @@ interface CategoryData {
   percent: string;
 }
 
-export function Resumo() {
+export function Resume() {
   const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>([]);
 
   const theme = useTheme();

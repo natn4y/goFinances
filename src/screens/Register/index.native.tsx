@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { useNavigation } from '@react-navigation/native';
@@ -17,10 +17,10 @@ import {
   Container,
   Form,
   Fields,
-} from './style';
+} from './styles.native';
 
 import { CategorySelectButton } from "../../components/Form/CategorySelectButton";
-import { CategorySelect } from "../CategorySelect";
+import { CategorySelect } from "../CategorySelect/index.native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { Button } from "../../components/Form/Button";
 import { HeaderSection } from "../../components/HeaderSection/index";
