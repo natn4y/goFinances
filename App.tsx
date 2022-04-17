@@ -35,7 +35,10 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <StatusBar backgroundColor="black" />
+          <StatusBar
+            backgroundColor={theme.colors.primary.main}
+            barStyle="light-content"
+          />
           <AppRoutes />
         </NavigationContainer>
       </ThemeProvider>
