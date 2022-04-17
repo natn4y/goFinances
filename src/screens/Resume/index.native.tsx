@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { ActivityIndicator } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -16,6 +17,7 @@ import { HistoryCard } from "../../components/HistoryCard";
 
 import {
   Container,
+  LoadContainer,
   Content,
   ChartContainer,
   MonthSelect,
@@ -45,12 +47,14 @@ interface CategoryData {
 }
 
 export function Resume() {
+  const [isLoading, setIsLoading] = useState(true);
   const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>([]);
 
   const theme = useTheme();
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   function handleDateChange(action: "next" | "prev") {
+    setIsLoading(true);
     if (action === "next") {
       setSelectedDate(addMonths(selectedDate, 1));
     } else {
@@ -91,9 +95,7 @@ export function Resume() {
             style: "currency",
             currency: "BRL",
           })
-          .replace("R$", "- R$ ")
-        ;
-
+          .replace("R$", "- R$ ");
         const percent = `${((categorySum / expenseTotal) * 100).toFixed(2)}%`;
 
         totalByCategory.push({
@@ -107,6 +109,7 @@ export function Resume() {
       }
     });
     setTotalByCategories(totalByCategory);
+    setIsLoading(false);
   }
 
   useFocusEffect(
@@ -118,43 +121,49 @@ export function Resume() {
   return (
     <Container>
       <HeaderSection title="Resumo por categoria" />
-      <Content>
-        <MonthSelect>
-          <MonthSelectButton onPress={() => handleDateChange("prev")}>
-            <SelectIcon name="chevron-left" />
-          </MonthSelectButton>
+      {isLoading ? (
+        <LoadContainer>
+          <ActivityIndicator color={theme.colors.primary.main} size="large" />
+        </LoadContainer>
+      ) : (
+        <Content>
+          <MonthSelect>
+            <MonthSelectButton onPress={() => handleDateChange("prev")}>
+              <SelectIcon name="chevron-left" />
+            </MonthSelectButton>
 
-          <Month>{format(selectedDate, "MMMM, yyyy", { locale: ptBR })}</Month>
+            <Month>{format(selectedDate, "MMMM, yyyy", { locale: ptBR })}</Month>
 
-          <MonthSelectButton onPress={() => handleDateChange("next")}>
-            <SelectIcon name="chevron-right" />
-          </MonthSelectButton>
-        </MonthSelect>
-        <ChartContainer>
-          <VictoryPie
-            data={totalByCategories}
-            colorScale={totalByCategories.map(category => category.color)}
-            style={{
-              labels: {
-                fontSize: RFValue(18),
-                fontWeight: 'bold',
-                fill: theme.colors.shape,
-              }
-            }}
-            labelRadius={70}
-            x="percent"
-            y="total"
-          />
-        </ChartContainer>
-        {totalByCategories.map((item) => (
-          <HistoryCard
-            key={item.key}
-            title={item.name}
-            amount={item.totalFormatted}
-            color={item.color}
-          />
-        ))}
-      </Content>
+            <MonthSelectButton onPress={() => handleDateChange("next")}>
+              <SelectIcon name="chevron-right" />
+            </MonthSelectButton>
+          </MonthSelect>
+          <ChartContainer>
+            <VictoryPie
+              data={totalByCategories}
+              colorScale={totalByCategories.map((category) => category.color)}
+              style={{
+                labels: {
+                  fontSize: RFValue(18),
+                  fontWeight: "bold",
+                  fill: theme.colors.shape,
+                },
+              }}
+              labelRadius={70}
+              x="percent"
+              y="total"
+            />
+          </ChartContainer>
+          {totalByCategories.map((item) => (
+            <HistoryCard
+              key={item.key}
+              title={item.name}
+              amount={item.totalFormatted}
+              color={item.color}
+            />
+          ))}
+        </Content>
+      )}
     </Container>
   );
 }

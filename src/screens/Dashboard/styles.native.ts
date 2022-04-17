@@ -6,7 +6,7 @@ export const Container = styled.View`
 `;
 
 export const LoadContainer = styled.View`
-  flex: 1;
+  height: 100%;
   justify-content: center;
   align-items: center;
-`
+`;
