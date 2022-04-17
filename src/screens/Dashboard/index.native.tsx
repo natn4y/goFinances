@@ -107,7 +107,8 @@ export function Dashboard() {
             currency: "BRL",
           })
           .replace("R$", `R$ `),
-        lastTransaction: `Última entrada dia ${lastTransactionEntries}`,
+          lastTransaction: `${lastTransactionEntries.includes('Invalid Date') ?
+          'Sem entradas' : `Última entrada dia ${lastTransactionEntries}`}`
       },
       expenses: {
         amount: expensiveTotal
@@ -116,7 +117,8 @@ export function Dashboard() {
             currency: "BRL",
           })
           .replace("R$", `R$ `),
-        lastTransaction: `Última saída dia ${lastTransactionExpenses}`,
+          lastTransaction: `${lastTransactionExpenses.includes('Invalid Date') ?
+          'Sem saídas' : `Última saída dia ${lastTransactionExpenses}`}`
       },
       total: {
         amount: total
@@ -125,7 +127,8 @@ export function Dashboard() {
             currency: "BRL",
           })
           .replace("R$", `R$ `),
-        lastTransaction: lastInterval,
+          lastTransaction: `${lastInterval.includes('Invalid Date') ?
+          '' : `${lastInterval}`}`
       },
     });
     setIsLoading(false);
