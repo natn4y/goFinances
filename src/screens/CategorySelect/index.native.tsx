@@ -14,7 +14,7 @@ import {
   Name,
   Separator,
   Footer,
-} from "./styles";
+} from "./styles.native";
 
 interface Category {
   key: string;
