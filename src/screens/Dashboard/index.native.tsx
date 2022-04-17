@@ -46,10 +46,11 @@ export function Dashboard() {
     type: "positive" | "negative"
   ) {
     const lastTransaction = new Date (Math.max.apply(
-      Math,
-      collection
-        .filter((transactions) => transactions.type === type)
-        .map((transaction) => new Date(transaction.date).getTime()))
+        Math,
+        collection
+          .filter((transactions) => transactions.type === type)
+          .map((transaction) => new Date(transaction.date).getTime())
+      )
     );
 
     return `${lastTransaction.getDate()} de ${lastTransaction.toLocaleString('pt-BR', { month: 'long' })}`
@@ -126,7 +127,7 @@ export function Dashboard() {
             style: "currency",
             currency: "BRL",
           })
-          .replace("R$", `R$ `),
+          .replace("R$", ` R$ `),
           lastTransaction: `${lastInterval.includes('Invalid Date') ?
           '' : `${lastInterval}`}`
       },
