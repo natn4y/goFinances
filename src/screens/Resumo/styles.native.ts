@@ -6,3 +6,8 @@ export const Content = styled.ScrollView.attrs({
   contentContainerStyle: { height: "100%", padding: 24 },
   showsVerticalScrollIndicator: false,
 })``;
+
+export const ChartContainer = styled.View`
+  width: 100%;
+  align-items: center;
+`;
