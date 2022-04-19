@@ -20,6 +20,7 @@ import theme from "./src/global/styles/theme";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { AppRoutes } from "./src/routes/app.routes";
+import { SignIn } from './src/screens/SignIn/index.native';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -41,7 +42,7 @@ export default function App() {
               backgroundColor={theme.colors.primary.main}
               barStyle="light-content"
             />
-            <AppRoutes />
+            <SignIn />
           </NavigationContainer>
         </AuthProvider>
       </ThemeProvider>
