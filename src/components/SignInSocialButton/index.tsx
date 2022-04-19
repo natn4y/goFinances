@@ -19,7 +19,7 @@ export function SignInSocialButton({
   ...rest
 }: SignInSocialButtonProps) {
   return (
-    <Container>
+    <Container {...rest}>
       <ImageContainer>
         <Svg />
       </ImageContainer>
