@@ -3,6 +3,7 @@ import {
   ReactNode,
   useContext,
   useState,
+  useEffect,
 } from "react";
 
 const { CLIENT_ID } = process.env;
@@ -29,6 +30,7 @@ interface IAuthContextData {
   user: User;
   signInWithGoogle: () => Promise<void>;
   singInWithApple: () => Promise<void>;
+  signOut: () => Promise<void>;
   userStorageLoading: boolean;
 }
 
@@ -98,12 +100,31 @@ function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  async function signOut() {
+    setUser({} as User);
+    await AsyncStorage.removeItem(userStorageKey);
+  }
+
+  async function loadUserStorageDate() {
+    const userStorage = await AsyncStorage.getItem(userStorageKey);
+
+    if (userStorage) {
+      const userLogged = JSON.parse(userStorage) as User;
+      setUser(userLogged);
+    }
+    setUserStorageLoading(false);
+  }
+  useEffect(() => {
+    loadUserStorageDate();
+  }, [])
+
   return (
     <AuthContext.Provider
       value={{
         user,
         signInWithGoogle,
         singInWithApple,
+        signOut,
         userStorageLoading,
       }}
     >
