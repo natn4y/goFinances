@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Alert } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 
@@ -21,23 +21,30 @@ import {
 import { SignInSocialButton } from "../../components/SignInSocialButton";
 
 export function SignIn() {
-  const { signInWithGoogle, singInWithApple} = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const { signInWithGoogle, singInWithApple } = useAuth();
 
   async function handleSignInWithGoogle() {
     try {
+      setIsLoading(true);
       await signInWithGoogle();
     } catch (error) {
       console.log(error);
       Alert.alert("Não foi possível conectar a conta Google");
+    } finally {
+      setIsLoading(false);
     }
   }
 
   async function handleSignInWithApple() {
     try {
+      setIsLoading(true);
       await signInWithGoogle();
     } catch (error) {
       console.log(error);
       Alert.alert("Não foi possível conectar a conta Apple");
+    } finally {
+      setIsLoading(false);
     }
   }
 

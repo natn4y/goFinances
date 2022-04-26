@@ -2,7 +2,7 @@ import {
   createContext,
   ReactNode,
   useContext,
-  useState
+  useState,
 } from "react";
 
 const { CLIENT_ID } = process.env;
@@ -29,6 +29,7 @@ interface IAuthContextData {
   user: User;
   signInWithGoogle: () => Promise<void>;
   singInWithApple: () => Promise<void>;
+  userStorageLoading: boolean;
 }
 
 interface AuthorizationResponse {
@@ -40,7 +41,8 @@ interface AuthorizationResponse {
 
 function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>({} as User);
-  const dataKey = "@gofinances:transactions";
+  const userStorageKey = "@gofinances:users";
+  const [userStorageLoading, setUserStorageLoading] = useState(true);
 
   async function signInWithGoogle() {
     try {
@@ -63,7 +65,7 @@ function AuthProvider({ children }: AuthProviderProps) {
           name: userInfo.given_name,
           photo: userInfo.picture,
         });
-        await AsyncStorage.setItem(dataKey, JSON.stringify(user));
+        await AsyncStorage.setItem(userStorageKey, JSON.stringify(userInfo));
       }
     } catch (error) {
       throw new Error(error);
@@ -88,7 +90,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         };
 
         setUser(userLogged);
-        await AsyncStorage.setItem(dataKey, JSON.stringify(userLogged));
+        await AsyncStorage.setItem(userStorageKey, JSON.stringify(userLogged));
 
       }
     } catch (error) {
@@ -102,6 +104,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         user,
         signInWithGoogle,
         singInWithApple,
+        userStorageLoading,
       }}
     >
       {children}
