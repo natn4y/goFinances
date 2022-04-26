@@ -1,5 +1,6 @@
 import React from "react";
 import { Text } from "react-native";
+import { useAuth } from "../../hooks/auth";
 
 import {
   Container,
@@ -14,6 +15,8 @@ import {
 } from "./styles";
 
 export function HeaderGreetings() {
+  const { signOut } = useAuth();
+
   return (
     <Container>
       <UserWrapper>
@@ -29,7 +32,7 @@ export function HeaderGreetings() {
             </UserName>
           </User>
         </UserInfo>
-        <LogoutButton>
+        <LogoutButton onPress={signOut}>
           <Icon name="power" />
         </LogoutButton>
       </UserWrapper>
