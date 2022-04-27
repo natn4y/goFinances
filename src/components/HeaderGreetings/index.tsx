@@ -15,20 +15,19 @@ import {
 } from "./styles";
 
 export function HeaderGreetings() {
-  const { signOut } = useAuth();
-
+  const { signOut, user } = useAuth();
   return (
     <Container>
       <UserWrapper>
         <UserInfo>
-          <Photo source={{ uri: "https://avatars.githubusercontent.com/u/49724359?v=4" }} />
+          <Photo source={{ uri: user.photo}} />
           <User>
             <UserGreeting>
               <Text>Olá,</Text>
             </UserGreeting>
 
             <UserName>
-              <Text>Rodrigo</Text>
+              <Text>{user.name}</Text>
             </UserName>
           </User>
         </UserInfo>
