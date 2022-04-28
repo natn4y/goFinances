@@ -3,6 +3,7 @@ import { ActivityIndicator } from "react-native";
 
 import { useFocusEffect } from "@react-navigation/native";
 import { useTheme } from "styled-components";
+import { useAuth } from "../../hooks/auth";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -39,7 +40,9 @@ export function Dashboard() {
   const [HighlightData, setHighlightData] = useState<HighlightData>({} as HighlightData);
 
   const theme = useTheme();
-  const dataKey = "@gofinances:transactions";
+  const { user } = useAuth();
+
+  const dataKey = `@gofinances:transactions_user:${user.id}`;
 
   function getLastTransactionDate(
     collection: DataListProps[],

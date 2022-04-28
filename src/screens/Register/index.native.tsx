@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from "../../hooks/auth";
 
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -46,7 +47,9 @@ export function Register() {
   const [transactionType, setTransactionType] = useState("");
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
 
-  const dataKey = "@gofinances:transactions";
+  const { user } = useAuth();
+
+  const dataKey = `@gofinances:transactions_user:${user.id}`;
 
   const [category, setCategory] = useState({
     key: "category",
