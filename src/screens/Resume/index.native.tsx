@@ -11,6 +11,7 @@ import { VictoryPie } from "victory-native";
 import { ptBR } from "date-fns/locale";
 
 import { useTheme } from "styled-components";
+import { useAuth } from "../../hooks/auth";
 
 import { HeaderSection } from "../../components/HeaderSection";
 import { HistoryCard } from "../../components/HistoryCard";
@@ -51,6 +52,7 @@ export function Resume() {
   const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>([]);
 
   const theme = useTheme();
+  const { user } = useAuth();
 
   const [selectedDate, setSelectedDate] = useState(new Date());
   function handleDateChange(action: "next" | "prev") {
@@ -63,7 +65,7 @@ export function Resume() {
   }
 
   async function loadData() {
-    const dataKey = "@gofinances:transactions";
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormatted = response ? JSON.parse(response) : [];
 
