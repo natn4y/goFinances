@@ -5,9 +5,16 @@
     "slug": "gofinances",
     "scheme": "gofinances",
     "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "android": {
       "package": "dev.test.gofinances"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "dd20dde4-e22b-4343-8042-b005b35dcad4"
+      }
     }
   }
 }
