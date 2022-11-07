@@ -20,7 +20,7 @@ export function HeaderGreetings() {
     <Container>
       <UserWrapper>
         <UserInfo>
-          <Photo source={{ uri: user.photo}} />
+          <Photo source={{ uri: user.photo || user.picture}} />
           <User>
             <UserGreeting>
               <Text>Olá,</Text>
