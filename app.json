@@ -9,7 +9,7 @@
       "**/*"
     ],
     "android": {
-      "package": "dev.test.gofinances"
+      "package": "com.gofinances"
     },
     "extra": {
       "eas": {

@@ -1,4 +1,4 @@
-package dev.test.gofinances;
+package com.gofinances;
 
 import android.os.Build;
 import android.os.Bundle;
