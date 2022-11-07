@@ -6,8 +6,7 @@ import {
   useEffect,
 } from "react";
 
-const { CLIENT_ID } = process.env;
-const { REDIRECT_URI } = process.env;
+import { CLIENT_ID, REDIRECT_URI } from 'react-native-dotenv';
 
 import * as AuthSession from "expo-auth-session";
 import * as AppleAuthentication from "expo-apple-authentication";
@@ -24,6 +23,7 @@ interface User {
   name: string;
   email: string;
   photo?: string;
+  picture?: string;
 }
 
 interface IAuthContextData {
